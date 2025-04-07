@@ -33,7 +33,7 @@ const INITIAL_STATE = {
 };
 
 const findBoards = (boards, criteria, page, search = '') => {
-  let result = boards;
+  let result = boards.filter(board => board.nameKey == null);
   for (let [key, value] of Object.entries(criteria)) {
     result = result.filter(
       board =>
@@ -63,11 +63,13 @@ class CommunicatorDialogContainer extends React.Component {
 
     this.state = {
       loading: false,
-      boards: props.communicatorBoards, // First time => Communicator Boards Tab
-      total: props.communicatorBoards.length,
+      boards: props.communicatorBoards.filter(board => board.nameKey == null), // First time => Communicator Boards Tab
+      total: props.communicatorBoards.filter(board => board.nameKey == null)
+        .length,
       selectedTab: TAB_INDEXES.COMMUNICATOR_BOARDS,
       totalPages: Math.ceil(
-        props.communicatorBoards.length / BOARDS_PAGE_LIMIT
+        props.communicatorBoards.filter(board => board.nameKey == null).length /
+          BOARDS_PAGE_LIMIT
       ),
       page: 1,
       search: '',
