@@ -75,8 +75,12 @@ export class ExportContainer extends PureComponent {
           const currentBoard = boards.filter(
             board => board.id === activeBoardId
           );
+
+          const subfolders = currentBoard[0].tiles;
+
+          const selectedBoards = boards.filter(board => board.tiles.length > 0);
           await EXPORT_HELPERS[exportConfig.callback](
-            currentBoard,
+            selectedBoards,
             labelFontSize,
             intl
           );
