@@ -113,12 +113,13 @@ class ColorSelect extends React.Component {
           style={radioGroupStyle}
           onChange={onChange}
         >
-          {this.state.colorMenu.name == 'Custom' ? (
-            <HuePicker
-              style={hueItemStyle}
-              color={this.state.color}
-              onChangeComplete={this.handleHueChange}
-            />
+          {this.state.colorMenu.name === 'Custom' ? (
+            <div style={hueItemStyle}>
+              <HuePicker
+                color={this.state.color}
+                onChangeComplete={this.handleHueChange}
+              />
+            </div>
           ) : (
             this.state.colorMenu.colors?.map(color => (
               <Radio
@@ -135,7 +136,7 @@ class ColorSelect extends React.Component {
               label={intl.formatMessage(messages.clearSelection)}
               onClick={() => {
                 onChange();
-                this.state.color = '';
+                this.setState({ color: colorSchemes[0].colors[1] });
               }}
             >
               <CloseIcon />
