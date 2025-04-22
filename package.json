@@ -13,7 +13,7 @@
     "tts",
     "text-to-speech"
   ],
-  "homepage": "https://app.cboard.io",
+  "homepage": ".",
   "private": false,
   "license": "GPL-3.0-only",
   "dependencies": {
@@ -148,7 +148,7 @@
   "scripts": {
     "analyze": "source-map-explorer build/static/js/**/*.js",
     "start": "craco start",
-    "build": "craco build  --verbose && sw-precache --config=sw-precache-config.js",
+    "build": "craco --max-old-space-size=4086 build  --verbose && sw-precache --config=sw-precache-config.js",
     "build-cordova-debug": "craco build --verbose --cordova-debug",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
