@@ -38,12 +38,10 @@ function Symbol(props) {
     ...other
   } = props;
   const [src, setSrc] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(
     () => {
       async function getSrc() {
-        setIsLoading(true);
         let image = null;
         if (keyPath) {
           const arasaacDB = await getArasaacDB();
@@ -107,16 +105,10 @@ function Symbol(props) {
         )}
       {src && (
         <div className="Symbol__image-container">
-          {isLoading && (
-            <div className="Symbol__image-loading">
-              <CircularProgress size={24} />
-            </div>
-          )}
           <img
             className="Symbol__image"
             src={src}
             alt=""
-            onLoad={() => setIsLoading(false)}
             style={{ display: isLoading ? 'none' : 'block' }}
           />
         </div>
